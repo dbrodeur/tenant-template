@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: apps-{{ .Release.Namespace }}
+  namespace: argocd
 spec:
   generators:
     - git:
@@ -12,6 +13,8 @@ spec:
   template:
     metadata:
       name: 'apps-{{ .Release.Namespace }}'
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{ "{{tenant.sync.wave}}" }}'
     spec:
       project: {{ .Release.Namespace }}
       source:
@@ -24,4 +27,10 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: {{ .Release.Namespace }}
-      syncPolicy: { }
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - Replace=true
+          - CreateNamespace=true
