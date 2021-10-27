@@ -12,7 +12,7 @@ spec:
           - path: {{ .Values.configuration.path }}
   template:
     metadata:
-      name: 'apps-{{ .Release.Namespace }}'
+      name: 'apps-{{ .Release.Namespace }}-{{ "{{tenant.chart}}" }}'
       annotations:
         argocd.argoproj.io/sync-wave: '{{ "{{tenant.sync.wave}}" }}'
     spec:
