@@ -1,0 +1,6 @@
+dependencies:
+- name: netcat-http
+  repository: https://dbrodeur.github.io/helm/
+  version: 0.1.0
+digest: sha256:579b09a937e647715401aa06eed50be2c469a83c9ca1dd36ff57521f5d9bf8cc
+generated: "2021-10-27T01:56:56.833704-04:00"

@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps-{{ .Release.Namespace }}
+spec:
+  generators:
+    - git:
+        repoURL: {{ .Values.configuration.git }}
+        revision: HEAD
+        files:
+          - path: {{ .Values.configuration.path }}
+  template:
+    metadata:
+      name: 'apps-{{ .Release.Namespace }}'
+    spec:
+      project: {{ .Release.Namespace }}
+      source:
+        repoURL: {{ .Values.app.git }}
+        targetRevision: HEAD
+        path: 'charts/{{ "{{tenant.chart}}" }}'
+        helm:
+          valueFiles:
+            - '{{ "{{self}}" }}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: {{ .Release.Namespace }}
+      syncPolicy: { }
