@@ -34,7 +34,3 @@ spec:
         syncOptions:
           - Replace=true
           - CreateNamespace=true
-      operation:
-        sync:
-          syncStrategy:
-            force: true
