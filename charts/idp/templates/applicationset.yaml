@@ -8,8 +8,7 @@ spec:
     - git:
         repoURL: {{ .Values.configuration.git }}
         revision: HEAD
-        files:
-          - path: {{ .Values.configuration.path }}
+{{- .Values.configuration.paths | toYaml | nindent 8 }}
   template:
     metadata:
       name: 'idp-apps-{{ .Release.Namespace }}-{{ "{{tenant.chart}}" }}'
