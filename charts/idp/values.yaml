@@ -1,7 +1,7 @@
 configuration:
   git: "https://github.com/dbrodeur/tenant-configurations.git"
   paths:
-    directories:
-    - path: "environments/omch-dev-01/tenant-one/idp/*"
+    files:
+    - path: "environments/omch-dev-01/tenant-one/idp/*.yaml"
 app:
   git: "https://github.com/dbrodeur/helm.git"
