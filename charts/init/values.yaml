@@ -1,7 +1,7 @@
 configuration:
   git: "https://github.com/dbrodeur/tenant-configurations.git"
   paths:
-    files:
-    - path: "environments/omch-dev-01/tenant-one/*.yaml"
+    directories:
+    - path: "environments/omch-dev-01/tenant-one"
 app:
   git: "https://github.com/dbrodeur/tenant-template.git"
