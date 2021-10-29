@@ -25,7 +25,7 @@ spec:
             - 'values.yaml'
       destination:
         server: https://kubernetes.default.svc
-        namespace: {{ .Release.Namespace }}
+        namespace: '{{ "{{tenant.name}}" }}'
       syncPolicy:
         automated:
           prune: true

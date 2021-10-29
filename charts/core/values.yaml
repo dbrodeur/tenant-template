@@ -1,3 +1,4 @@
 tenant:
+  name: tenant-one
   sync:
     wave: "-1"
