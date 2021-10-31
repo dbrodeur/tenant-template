@@ -1,3 +1,5 @@
+tenant:
+  namespace: tenant
 configuration:
   git: "https://github.com/dbrodeur/tenant-configurations.git"
   paths:

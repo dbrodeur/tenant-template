@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: apps-{{ .Release.Namespace }}
+  name: apps-{{ .Values.tenant.namespace }}
   namespace: argocd
 spec:
   generators:
@@ -11,21 +11,21 @@ spec:
 {{- .Values.configuration.paths | toYaml | nindent 8 }}
   template:
     metadata:
-      name: 'apps-{{ .Release.Namespace }}-{{ "{{tenant.chart}}" }}'
+      name: 'apps-{{ .Values.tenant.namespace }}-{{ "{{tenant.chart}}" }}'
       annotations:
         argocd.argoproj.io/sync-wave: '{{ "{{tenant.sync.wave}}" }}'
     spec:
-      project: {{ .Release.Namespace }}
+      project: '{{ "{{tenant.project}}" }}'
       source:
         repoURL: {{ .Values.app.git }}
         targetRevision: HEAD
         path: 'charts/{{ "{{tenant.chart}}" }}'
         helm:
           valueFiles:
-            - 'values.yaml'
+            - '{{ "{{tenant.self}}" }}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{ "{{tenant.name}}" }}'
+        namespace: '{{ "{{tenant.namespace}}" }}'
       syncPolicy:
         automated:
           prune: true
