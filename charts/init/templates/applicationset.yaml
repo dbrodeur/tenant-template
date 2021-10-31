@@ -22,7 +22,7 @@ spec:
         path: 'charts/{{ "{{tenant.chart}}" }}'
         helm:
           valueFiles:
-            - '{{ "{{tenant.self}}" }}'
+            - '{{ "{{self}}" }}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{ "{{tenant.namespace}}" }}'
