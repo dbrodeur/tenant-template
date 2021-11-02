@@ -18,7 +18,7 @@ spec:
       project: {{ .Release.Namespace }}
       source:
         repoURL: {{ .Values.app.git }}
-        targetRevision: HEAD
+        targetRevision: '{{ "{{tenant.revision}}" }}'
         path: 'charts/{{ "{{tenant.chart}}" }}'
         helm:
           valueFiles:
