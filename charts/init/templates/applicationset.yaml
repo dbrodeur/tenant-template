@@ -23,10 +23,6 @@ spec:
         helm:
           valueFiles:
             - '{{ "{{self}}" }}'
-      operation:
-        syncStrategy:
-          apply:
-            force: true
       destination:
         server: https://kubernetes.default.svc
         namespace: {{ .Release.Namespace }}

@@ -26,10 +26,6 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: {{ .Release.Namespace }}
-      operation:
-        syncStrategy:
-          apply:
-            force: true
       syncPolicy:
         automated:
           prune: true
