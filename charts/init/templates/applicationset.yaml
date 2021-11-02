@@ -23,6 +23,7 @@ spec:
         helm:
           valueFiles:
             - '{{ "{{self}}" }}'
+      operation:
         syncStrategy:
           apply:
             force: true
